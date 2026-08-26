@@ -166,22 +166,6 @@ local function copyToClipboard(str)
 	return pcall(setClipboard, str)
 end
 
-local function openDiscordInvite(code)
-	if not httpRequest then return false end
-	return pcall(function()
-		httpRequest({
-			Url = "http://127.0.0.1:6463/rpc?v=1",
-			Method = "POST",
-			Headers = { ["Content-Type"] = "application/json", Origin = "https://discord.com" },
-			Body = HttpService:JSONEncode({
-				cmd = "INVITE_BROWSER",
-				nonce = HttpService:GenerateGUID(false),
-				args = { code = code },
-			}),
-		})
-	end)
-end
-
 ----------------------------------------------------------------------
 -- Library root
 ----------------------------------------------------------------------
